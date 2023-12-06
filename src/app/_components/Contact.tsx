@@ -103,7 +103,7 @@ const Contact = () => {
               />
               <button
                 type="submit"
-                className="px-[99px] py-[18px] bg-[#FA002D] active:bg-[#b80000] text-[white] rounded-[6px] ml-1 cursor-pointer w-full lg:w-fit"
+                className="mt-2 px-[99px] py-[18px] bg-[#FA002D] active:bg-[#b80000] text-[white] rounded-[6px] ml-1 cursor-pointer w-full lg:w-fit self-center md:self-start"
               >
                 Projetos
               </button>
