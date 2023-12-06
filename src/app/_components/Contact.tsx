@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { myAction } from "./action";
 import ContactCard from "./_cards/ContactCard";
+import { useFormState } from "react-dom";
+import Image from "next/image";
 
 interface FormData {
   name: string;
@@ -40,6 +42,15 @@ const ContactCardInfo: contactCard[] = [
 ];
 
 const Contact = () => {
+  const [state, action] = useFormState(myAction, { message: null });
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (state.message) {
+      setLoading(!loading);
+    }
+  }, [state]);
+
   return (
     <div>
       <h1 className="text-[36px] font-bold text-[#fff] block my-20 mt-[80px] text-center">
@@ -64,8 +75,16 @@ const Contact = () => {
         <div className="contact-left flex-1">
           <div className="form-container max-w-[496px] mx-auto">
             <form
-              action={myAction}
+              action={async (fromData) => {
+                await action(fromData);
+                setLoading(true);
+                const myForm = document.getElementById(
+                  "my-from"
+                ) as HTMLFormElement;
+                myForm.reset();
+              }}
               className="flex flex-col items-center justify-center mr-0 lg:mr-2 px-2"
+              id="my-from"
             >
               <input
                 type="text"
@@ -73,7 +92,6 @@ const Contact = () => {
                 id="name"
                 placeholder="Name"
                 className="contact-from-input"
-                // onChange={handleInputChange}
                 pattern="[A-Za-z]{0,25}"
                 title="Name should be less than 25 character"
               />
@@ -84,7 +102,6 @@ const Contact = () => {
                 placeholder="Email"
                 className="contact-from-input"
                 title="abc@email.com"
-                // onChange={handleInputChange}
               />
               <input
                 type="tel"
@@ -92,20 +109,28 @@ const Contact = () => {
                 id="Telefone"
                 placeholder="Telefone"
                 className="contact-from-input"
-                // onChange={handleInputChange}
               />
               <textarea
                 name="description"
                 id="description"
                 placeholder="Description"
                 className="contact-from-input resize-none h-[218px]"
-                // onChange={handleInputChange}
               />
               <button
                 type="submit"
-                className="mt-2 px-[99px] py-[18px] bg-[#FA002D] active:bg-[#b80000] text-[white] rounded-[6px] ml-1 cursor-pointer w-full lg:w-fit self-center md:self-start"
+                className="mt-2 h-[60px] w-full lg:w-[250px] px-[99px] py-[18px] bg-[#FA002D] active:bg-[#b80000] text-[white] rounded-[6px] ml-1 cursor-pointer w-full lg:w-fit self-center md:self-start"
               >
-                Projetos
+                {loading ? (
+                    <Image
+                      src="/loading.png"
+                      alt="loading"
+                      width={28}
+                      height={0}
+                      className="animate-spin w-fit mx-auto -mt-1"
+                    />
+                ) : (
+                  "Projetos"
+                )}
               </button>
             </form>
           </div>

@@ -2,7 +2,7 @@
 import dbConnect from "../../../lib/dbconnect";
 import User from "../../../models/User";
 
-export async function myAction(formData: FormData) {
+export async function myAction(prevState: any, formData: FormData) {
   await dbConnect();
 
   const name = formData.get("name");
@@ -21,5 +21,8 @@ export async function myAction(formData: FormData) {
   await User.create(data);
   console.log(data);
 
-  
+  return {
+    ...prevState,
+    message: "From Submitted Successfully :)",
+  };
 }
