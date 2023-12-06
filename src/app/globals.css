@@ -16,12 +16,34 @@
   }
 }
 
+@layer components {
+  /* w-full my-4 px-4 py-4 rounded-md bg-[#0E0E0E] text-white */
+  .contact-from-input {
+    width: 100%;
+    margin: 6px;
+    padding: 21px 23px;
+    border-radius: 5px;
+    background: #0e0e0e;
+    color: white;
+    outline: none;
+  }
+}
+
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #2d2d2d;
+  /* font-size: 62.5%; */
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d70027;
+  border-radius: 8px;
+  border: 2px solid #ff1843;
+}
+
+.custom-scroll::-webkit-scrollbar{
+  height: 0px;
+  width: 0px;
 }
