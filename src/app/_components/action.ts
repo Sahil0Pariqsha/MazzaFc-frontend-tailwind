@@ -20,4 +20,6 @@ export async function myAction(formData: FormData) {
 
   await User.create(data);
   console.log(data);
+
+  
 }

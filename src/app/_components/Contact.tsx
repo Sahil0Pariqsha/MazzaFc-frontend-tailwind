@@ -63,7 +63,10 @@ const Contact = () => {
       <div className="flex flex-col lg:flex-row justify-between w-full gap-10 lg:w-5/6 mx-auto mb-40">
         <div className="contact-left flex-1">
           <div className="form-container max-w-[496px] mx-auto">
-            <form action={myAction} className="mr-2 p-2">
+            <form
+              action={myAction}
+              className="flex flex-col items-center justify-center mr-0 lg:mr-2 px-2"
+            >
               <input
                 type="text"
                 name="name"
