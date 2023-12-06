@@ -3,7 +3,7 @@ import dbConnect from "../../../lib/dbconnect";
 import User from "../../../models/User";
 
 export async function myAction(formData: FormData) {
-  dbConnect();
+  await dbConnect();
 
   const name = formData.get("name");
   const email = formData.get("email");
